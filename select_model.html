@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Your Car Model - UpYourCarPlay</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cta-button-prominent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(26, 115, 232, 0.4) !important;
+            background: linear-gradient(135deg, #1557b0 0%, #3367d6 100%) !important;
+        }
+        
+        .cta-button-prominent:hover span:last-child {
+            transform: translateX(5px);
+        }
+        
+        button:hover {
+            background: #5a6268 !important;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .cta-button-prominent {
+                width: 100%;
+                justify-content: center !important;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -56,7 +80,6 @@
                             <p>2011-2023 Models</p>
                         </div>
                     </div>
-                    <button class="continue-btn" id="continueStep1" disabled>Continue</button>
                 </div>
 
                 <!-- Step 2: VW Up Specific Options -->
@@ -92,7 +115,6 @@
                             <p>2016-2023 Models</p>
                         </div>
                     </div>
-                    <button class="continue-btn" id="continueStep2VW" disabled>Continue</button>
                 </div>
 
                 <!-- Step 2: Seat Mii Specific Options -->
@@ -128,7 +150,6 @@
                             <p>2016-2023 Models</p>
                         </div>
                     </div>
-                    <button class="continue-btn" id="continueStep2Seat" disabled>Continue</button>
                 </div>
 
                 <!-- Step 2: Skoda Citigo Specific Options -->
@@ -164,7 +185,6 @@
                             <p>2016-2023 Models</p>
                         </div>
                     </div>
-                    <button class="continue-btn" id="continueStep2Skoda" disabled>Continue</button>
                 </div>
 
                 <!-- Step 3: Dashboard Type (for phone holder options) -->
@@ -186,7 +206,6 @@
                             <p>Standard center console design</p>
                         </div>
                     </div>
-                    <button class="continue-btn" id="continueStep3" disabled>Continue</button>
                 </div>
 
                 <!-- Final Step: Summary and Order -->
@@ -197,23 +216,28 @@
                     </div>
                     
                     <div style="text-align: center; margin-top: 2rem;">
-                        <h4 style="margin-bottom: 1rem;">Ready to upgrade your car?</h4>
-                        <p style="margin-bottom: 2rem; color: #666;">Contact us to place your order or get more information about installation.</p>
+                        <h4 style="margin-bottom: 1rem; font-size: 1.5rem; color: #000;">Ready to upgrade your car?</h4>
+                        <p style="margin-bottom: 2.5rem; color: #666; font-size: 1.1rem;">Contact us to place your order or get more information about installation.</p>
                         
-                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                            <a href="index.html#contact" class="cta-button">Contact Us</a>
-                            <button class="continue-btn" onclick="location.reload()" style="background: #666;">Start Over</button>
+                        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                            <button onclick="redirectToContact()" class="cta-button-prominent" style="display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); color: white; padding: 1.2rem 2.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(26, 115, 232, 0.3); border: none; cursor: pointer;">
+                                <span>Contact Us Now</span>
+                                <span style="font-size: 1.2rem; transition: transform 0.3s ease;">→</span>
+                            </button>
+                            <button onclick="location.reload()" style="background: #6c757d; color: white; padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+                                <span>Start Over</span>
+                            </button>
                         </div>
                         
                         <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 8px; text-align: left;">
                             <h5 style="margin-bottom: 1rem;">What's included:</h5>
                             <ul style="list-style: none; padding: 0;">
-                                <li style="margin-bottom: 0.5rem;">✓ High-quality CarPlay touchscreen</li>
-                                <li style="margin-bottom: 0.5rem;">✓ All necessary cables and adapters</li>
-                                <li style="margin-bottom: 0.5rem;">✓ Custom dashboard trim (if needed)</li>
-                                <li style="margin-bottom: 0.5rem;">✓ Detailed installation instructions</li>
-                                <li style="margin-bottom: 0.5rem;">✓ 2-year warranty</li>
-                                <li style="margin-bottom: 0.5rem;">✓ Free shipping within EU</li>
+                                <li style="margin-bottom: 0.5rem;">• High-quality CarPlay touchscreen</li>
+                                <li style="margin-bottom: 0.5rem;">• All necessary cables and adapters</li>
+                                <li style="margin-bottom: 0.5rem;">• Custom dashboard trim (if needed)</li>
+                                <li style="margin-bottom: 0.5rem;">• Detailed installation instructions</li>
+                                <li style="margin-bottom: 0.5rem;">• 2-year warranty</li>
+                                <li style="margin-bottom: 0.5rem;">• Free shipping within EU</li>
                             </ul>
                         </div>
                     </div>
@@ -246,25 +270,23 @@
                 e.target.closest('.option').classList.add('selected');
                 selectedCar = e.target.closest('.option').dataset.value;
                 
-                // Enable continue button
-                document.getElementById('continueStep1').disabled = false;
-            }
-        });
-
-        document.getElementById('continueStep1').addEventListener('click', function() {
-            // Hide step 1
-            document.getElementById('step1').classList.add('hidden');
-            
-            // Show appropriate step 2 based on car selection
-            if (selectedCar === 'volkswagen-up') {
-                document.getElementById('step2-vw').classList.remove('hidden');
-                document.getElementById('step2-vw').classList.add('active');
-            } else if (selectedCar === 'seat-mii') {
-                document.getElementById('step2-seat').classList.remove('hidden');
-                document.getElementById('step2-seat').classList.add('active');
-            } else if (selectedCar === 'skoda-citigo') {
-                document.getElementById('step2-skoda').classList.remove('hidden');
-                document.getElementById('step2-skoda').classList.add('active');
+                // Auto-proceed to next step after a short delay
+                setTimeout(() => {
+                    // Hide step 1
+                    document.getElementById('step1').classList.add('hidden');
+                    
+                    // Show appropriate step 2 based on car selection
+                    if (selectedCar === 'volkswagen-up') {
+                        document.getElementById('step2-vw').classList.remove('hidden');
+                        document.getElementById('step2-vw').classList.add('active');
+                    } else if (selectedCar === 'seat-mii') {
+                        document.getElementById('step2-seat').classList.remove('hidden');
+                        document.getElementById('step2-seat').classList.add('active');
+                    } else if (selectedCar === 'skoda-citigo') {
+                        document.getElementById('step2-skoda').classList.remove('hidden');
+                        document.getElementById('step2-skoda').classList.add('active');
+                    }
+                }, 500);
             }
         });
 
@@ -274,21 +296,21 @@
                 document.querySelectorAll('#vwOptions .option').forEach(opt => opt.classList.remove('selected'));
                 e.target.closest('.option').classList.add('selected');
                 selectedConfig = e.target.closest('.option').dataset.value;
-                document.getElementById('continueStep2VW').disabled = false;
                 
                 // Check if dashboard selection is needed
                 requiresDashboardSelection = selectedConfig.includes('phoneholder');
-            }
-        });
-
-        document.getElementById('continueStep2VW').addEventListener('click', function() {
-            document.getElementById('step2-vw').classList.add('hidden');
-            
-            if (requiresDashboardSelection) {
-                document.getElementById('step3-dashboard').classList.remove('hidden');
-                document.getElementById('step3-dashboard').classList.add('active');
-            } else {
-                showFinalStep();
+                
+                // Auto-proceed to next step after a short delay
+                setTimeout(() => {
+                    document.getElementById('step2-vw').classList.add('hidden');
+                    
+                    if (requiresDashboardSelection) {
+                        document.getElementById('step3-dashboard').classList.remove('hidden');
+                        document.getElementById('step3-dashboard').classList.add('active');
+                    } else {
+                        showFinalStep();
+                    }
+                }, 500);
             }
         });
 
@@ -298,20 +320,20 @@
                 document.querySelectorAll('#seatOptions .option').forEach(opt => opt.classList.remove('selected'));
                 e.target.closest('.option').classList.add('selected');
                 selectedConfig = e.target.closest('.option').dataset.value;
-                document.getElementById('continueStep2Seat').disabled = false;
                 
                 requiresDashboardSelection = selectedConfig.includes('phoneholder');
-            }
-        });
-
-        document.getElementById('continueStep2Seat').addEventListener('click', function() {
-            document.getElementById('step2-seat').classList.add('hidden');
-            
-            if (requiresDashboardSelection) {
-                document.getElementById('step3-dashboard').classList.remove('hidden');
-                document.getElementById('step3-dashboard').classList.add('active');
-            } else {
-                showFinalStep();
+                
+                // Auto-proceed to next step after a short delay
+                setTimeout(() => {
+                    document.getElementById('step2-seat').classList.add('hidden');
+                    
+                    if (requiresDashboardSelection) {
+                        document.getElementById('step3-dashboard').classList.remove('hidden');
+                        document.getElementById('step3-dashboard').classList.add('active');
+                    } else {
+                        showFinalStep();
+                    }
+                }, 500);
             }
         });
 
@@ -321,20 +343,20 @@
                 document.querySelectorAll('#skodaOptions .option').forEach(opt => opt.classList.remove('selected'));
                 e.target.closest('.option').classList.add('selected');
                 selectedConfig = e.target.closest('.option').dataset.value;
-                document.getElementById('continueStep2Skoda').disabled = false;
                 
                 requiresDashboardSelection = selectedConfig.includes('phoneholder');
-            }
-        });
-
-        document.getElementById('continueStep2Skoda').addEventListener('click', function() {
-            document.getElementById('step2-skoda').classList.add('hidden');
-            
-            if (requiresDashboardSelection) {
-                document.getElementById('step3-dashboard').classList.remove('hidden');
-                document.getElementById('step3-dashboard').classList.add('active');
-            } else {
-                showFinalStep();
+                
+                // Auto-proceed to next step after a short delay
+                setTimeout(() => {
+                    document.getElementById('step2-skoda').classList.add('hidden');
+                    
+                    if (requiresDashboardSelection) {
+                        document.getElementById('step3-dashboard').classList.remove('hidden');
+                        document.getElementById('step3-dashboard').classList.add('active');
+                    } else {
+                        showFinalStep();
+                    }
+                }, 500);
             }
         });
 
@@ -344,13 +366,13 @@
                 document.querySelectorAll('#dashboardOptions .option').forEach(opt => opt.classList.remove('selected'));
                 e.target.closest('.option').classList.add('selected');
                 selectedDashboard = e.target.closest('.option').dataset.value;
-                document.getElementById('continueStep3').disabled = false;
+                
+                // Auto-proceed to final step after a short delay
+                setTimeout(() => {
+                    document.getElementById('step3-dashboard').classList.add('hidden');
+                    showFinalStep();
+                }, 500);
             }
-        });
-
-        document.getElementById('continueStep3').addEventListener('click', function() {
-            document.getElementById('step3-dashboard').classList.add('hidden');
-            showFinalStep();
         });
 
         function showFinalStep() {
@@ -395,6 +417,25 @@
             document.getElementById('finalSummary').innerHTML = summary;
             document.getElementById('stepFinal').classList.remove('hidden');
             document.getElementById('stepFinal').classList.add('active');
+        }
+
+        function redirectToContact() {
+            // Create URL with selection data
+            const params = new URLSearchParams({
+                car: selectedCar,
+                config: selectedConfig,
+                dashboard: selectedDashboard || '',
+                price: calculatePrice()
+            });
+            
+            window.location.href = `contact.html?${params.toString()}`;
+        }
+
+        function calculatePrice() {
+            let price = 299; // Base price
+            if (selectedConfig.includes('garmin')) price += 50;
+            if (selectedDashboard === 'high-dashboard') price += 30;
+            return price;
         }
     </script>
 </body>

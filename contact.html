@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - UpYourCarPlay</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .contact-page {
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 120px 0 80px;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .contact-header {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .contact-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .contact-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .contact-form-section {
+            padding: 3rem 2rem;
+        }
+        
+        .selection-summary {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #1a73e8;
+        }
+        
+        .selection-summary h3 {
+            color: #1a73e8;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .selection-details {
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1a73e8;
+        }
+        
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: border-color 0.3s ease;
+            background-color: white;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
+        
+        .form-group select {
+            cursor: pointer;
+        }
+        
+        .address-error {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 115, 232, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-page {
+                padding: 100px 1rem 40px;
+            }
+            
+            .contact-header {
+                padding: 2rem 1.5rem;
+            }
+            
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-form-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <img src="static/logo.webp" alt="UpYourCarPlay Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="#" class="active">Contact</a></li>
+                <li><a href="select_model.html">Select Your Model</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contact Page -->
+    <section class="contact-page">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-header">
+                    <h1>Get Your CarPlay Screen</h1>
+                    <p>We'll help you complete your order and answer any questions</p>
+                </div>
+                
+                <div class="contact-form-section">
+                    <!-- Selection Summary -->
+                    <div class="selection-summary" id="selectionSummary" style="display: none;">
+                        <h3>Your Selection</h3>
+                        <div class="selection-details" id="selectionDetails">
+                            <!-- Details will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        
+        <div class="form-group">
+            <label for="street">Street Address *</label>
+            <input type="text" id="street" name="street" placeholder="Street name and number" required>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" placeholder="City" required>
+            </div>
+            <div class="form-group">
+                <label for="country">Country *</label>
+                <input type="text" id="country" name="country" placeholder="Country" required>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="postalCode">Postal Code</label>
+                <input type="text" id="postalCode" name="postalCode" placeholder="Postal/ZIP Code">
+            </div>
+            <div class="form-group">
+                <label for="state">State/Province</label>
+                <input type="text" id="state" name="state" placeholder="State or Province (if applicable)">
+            </div>
+        </div>                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Any additional questions or special requirements..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Send Order Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 UpYourCarPlay. All rights reserved. Professional CarPlay installations for Volkswagen, Seat, and Skoda vehicles.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const car = urlParams.get('car');
+        const config = urlParams.get('config');
+        const dashboard = urlParams.get('dashboard');
+        const price = urlParams.get('price');
+
+        // Car and config name mappings
+        const carNames = {
+            'volkswagen-up': 'Volkswagen Up',
+            'seat-mii': 'Seat Mii',
+            'skoda-citigo': 'Skoda Citigo'
+        };
+
+        const configNames = {
+            'with-garmin-2011-2016': 'With Garmin Navigation 2011-2016',
+            'without-garmin-2011-2016': 'Without Garmin Navigation 2011-2016',
+            'with-phoneholder-2016-2023': 'With Phone Holder 2016-2023',
+            'without-phoneholder-2016-2023': 'Without Phone Holder 2016-2023'
+        };
+
+        const dashboardNames = {
+            'high-dashboard': 'High Dashboard',
+            'low-dashboard': 'Low Dashboard',
+            'high-dashboardd': 'High Dashboard',
+            'low-dashboardd': 'Low Dashboard'
+        };
+
+        // Populate selection summary if data exists
+        if (car && config) {
+            document.getElementById('selectionSummary').style.display = 'block';
+            
+            let detailsHTML = `
+                <div class="detail-item">
+                    <span>Car Model:</span>
+                    <span>${carNames[car] || car}</span>
+                </div>
+                <div class="detail-item">
+                    <span>Configuration:</span>
+                    <span>${configNames[config] || config}</span>
+                </div>
+            `;
+            
+            if (dashboard) {
+                detailsHTML += `
+                    <div class="detail-item">
+                        <span>Dashboard type:</span>
+                        <span>${dashboardNames[dashboard] || dashboard}</span>
+                    </div>
+                `;
+            }
+            
+            if (price) {
+                detailsHTML += `
+                    <div class="detail-item">
+                        <span>Estimated Price:</span>
+                        <span>€${price}</span>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('selectionDetails').innerHTML = detailsHTML;
+            
+            // Pre-fill message with selection details
+            const messageField = document.getElementById('message');
+            let prefilledMessage = `Hi, I'm interested in ordering a CarPlay screen for my ${carNames[car] || car}.
+
+Selected Configuration:
+- Car: ${carNames[car] || car}
+- Configuration: ${configNames[config] || config}`;
+
+            if (dashboard) {
+                prefilledMessage += `\n- Dashboard type: ${dashboardNames[dashboard] || dashboard}`;
+            }
+            
+            if (price) {
+                prefilledMessage += `\n- Estimated Price: €${price}`;
+            }
+            
+            prefilledMessage += `\n\nPlease provide more information about:
+- Availability and delivery time
+- Installation instructions
+- Payment options
+- Any additional accessories needed
+
+Thank you!`;
+            
+            messageField.value = prefilledMessage;
+        }
+
+        // Address validation function
+        function validateAddress() {
+            const street = document.getElementById('street').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const country = document.getElementById('country').value;
+            const postalCode = document.getElementById('postalCode').value.trim();
+            
+            let isValid = true;
+            let errors = [];
+            
+            // Clear previous error messages
+            document.querySelectorAll('.address-error').forEach(error => {
+                error.style.display = 'none';
+            });
+            
+            // Validate street address
+            if (!street || street.length < 5) {
+                errors.push('Street address must be at least 5 characters long');
+                document.getElementById('street').style.borderColor = '#dc3545';
+                isValid = false;
+            } else {
+                document.getElementById('street').style.borderColor = '#e9ecef';
+            }
+            
+            // Validate city
+            if (!city || city.length < 2) {
+                errors.push('City must be at least 2 characters long');
+                document.getElementById('city').style.borderColor = '#dc3545';
+                isValid = false;
+            } else {
+                document.getElementById('city').style.borderColor = '#e9ecef';
+            }
+            
+            // Validate country
+            if (!country || country.length < 2) {
+                errors.push('Country must be at least 2 characters long');
+                document.getElementById('country').style.borderColor = '#dc3545';
+                isValid = false;
+            } else {
+                document.getElementById('country').style.borderColor = '#e9ecef';
+            }
+            
+            // Validate postal code format based on country
+            if (postalCode) {
+                const postalPatterns = {
+                    'Germany': /^\d{5}$/,
+                    'Netherlands': /^\d{4}\s?[A-Z]{2}$/i,
+                    'Belgium': /^\d{4}$/,
+                    'France': /^\d{5}$/,
+                    'Austria': /^\d{4}$/,
+                    'Switzerland': /^\d{4}$/,
+                    'United Kingdom': /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i,
+                    'United States': /^\d{5}(-\d{4})?$/
+                };
+                
+                if (country && postalPatterns[country] && !postalPatterns[country].test(postalCode)) {
+                    errors.push(`Invalid postal code format for ${country}`);
+                    document.getElementById('postalCode').style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    document.getElementById('postalCode').style.borderColor = '#e9ecef';
+                }
+            }
+            
+            return { isValid, errors };
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate address
+            const addressValidation = validateAddress();
+            
+            if (!addressValidation.isValid) {
+                // Show error message
+                let errorMessage = 'Please fix the following address errors:\n' + addressValidation.errors.join('\n');
+                alert(errorMessage);
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Combine address fields for display
+            const fullAddress = `${data.street}, ${data.city}`;
+            if (data.postalCode) {
+                fullAddress += ` ${data.postalCode}`;
+            }
+            if (data.state) {
+                fullAddress += `, ${data.state}`;
+            }
+            fullAddress += `, ${data.country}`;
+            
+            // Simulate form submission
+            alert(`Thank you for your inquiry! We will contact you within 24 hours with detailed information about your CarPlay screen order.\n\nShipping to: ${fullAddress}`);
+            
+            // In a real application, you would send this data to your server
+            console.log('Form data:', data);
+            console.log('Full address:', fullAddress);
+        });
+
+        // Add real-time validation for address fields
+        document.getElementById('street').addEventListener('blur', validateAddress);
+        document.getElementById('city').addEventListener('blur', validateAddress);
+        document.getElementById('country').addEventListener('blur', validateAddress);
+        document.getElementById('postalCode').addEventListener('blur', validateAddress);
+    </script>
+</body>
+</html>
