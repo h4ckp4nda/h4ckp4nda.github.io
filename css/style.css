@@ -20,7 +20,8 @@ body {
 
 /* Header Styles */
 header {
-    background: #000;
+    background: #000000 !important;
+    background-color: black !important;
     color: white;
     padding: 1rem 0;
     position: fixed;
@@ -38,7 +39,7 @@ nav {
 }
 
 .logo {
-    height: 50px;
+    height: 85px;
     width: auto;
 }
 
