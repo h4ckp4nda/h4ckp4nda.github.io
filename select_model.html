@@ -28,6 +28,28 @@
                 margin-bottom: 1rem;
             }
         }
+        
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .back-btn:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
@@ -35,13 +57,22 @@
     <header>
         <nav class="container">
             <img src="static/logo.webp" alt="UpYourCarPlay Logo" class="logo">
-            <ul class="nav-links">
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#showcase">Showcase</a></li>
                 <li><a href="index.html#products">Products</a></li>
                 <li><a href="index.html#reviews">Reviews</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="#" class="active">Select Your Model</a></li>
+                <li><a href="#" class="active">Select Your Mode l</a></li>
             </ul>
         </nav>
     </header>
@@ -57,25 +88,25 @@
 
                 <!-- Step 1: Car Brand Selection -->
                 <div class="step active" id="step1">
-                    <h3>Step 1: What car do you have?</h3>
+                    <h3>Step 1: Which car do you have</h3>
                     <div class="options" id="carOptions">
                         <div class="option" data-value="volkswagen-up">
-                            <div class="option-image">
-                                <img src="static/vw_up.jpg" alt="Volkswagen Up" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            <div class="option-image" style="background: white; border-radius: 15px;">
+                                <img src="static/vw-up.png" alt="Volkswagen Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 15px; border: 2px solid white;">
                             </div>
                             <h4>Volkswagen Up</h4>
                             <p>2011-2023 Models</p>
                         </div>
                         <div class="option" data-value="seat-mii">
-                            <div class="option-image">
-                                <img src="static/seat_mii.jpg" alt="Seat Mii" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            <div class="option-image" style="background: white; border-radius: 15px;">
+                                <img src="static/seat-mii.png" alt="Seat Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 15px; border: 2px solid white;">
                             </div>
                             <h4>Seat Mii</h4>
                             <p>2011-2023 Models</p>
                         </div>
                         <div class="option" data-value="skoda-citigo">
-                            <div class="option-image">
-                                <img src="static/skoda_citigo.jpg" alt="Skoda Citigo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            <div class="option-image" style="background: white; border-radius: 15px;">
+                                <img src="static/skoda-citigo.png" alt="Skoda Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 15px; border: 2px solid white;">
                             </div>
                             <h4>Skoda Attigo</h4>
                             <p>2011-2023 Models</p>
@@ -85,6 +116,7 @@
 
                 <!-- Step 2: VW Up Specific Options -->
                 <div class="step hidden" id="step2-vw">
+                    <button class="back-btn" onclick="goToPreviousStep('step2-vw', 'step1')">← Go Back</button>
                     <h3>Step 2: Select your Volkswagen Up configuration</h3>
                     <div class="options" id="vwOptions">
                         <div class="option" data-value="with-phoneholder-2016-2023">
@@ -118,8 +150,53 @@
                     </div>
                 </div>
 
+                <!-- Step 2b: VW Up Radio Options (shown for without phone holder option) -->
+                <div class="step hidden" id="step2b-vw-radio">
+                    <button class="back-btn" onclick="goToPreviousStep('step2b-vw-radio', 'step2-vw')">← Go Back</button>
+                    <h3>Step 3: Select your radio type</h3>
+                    <div class="options" id="vwRadioOptions">
+                        <div class="option" data-value="radio-with-bluetooth">
+                            <div class="option-image">
+                                <img src="static/radio_bluetooth.jpg" alt="Radio with Bluetooth" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            </div>
+                            <h4>Radio with Bluetooth</h4>
+                            <p>Standard radio with Bluetooth connectivity</p>
+                        </div>
+                        <div class="option" data-value="radio-without-bluetooth">
+                            <div class="option-image">
+                                <img src="static/radio_standard.jpg" alt="Radio without Bluetooth" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            </div>
+                            <h4>Radio without Bluetooth</h4>
+                            <p>Basic radio without Bluetooth</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2b: Radio selection for Seat Mii (without phone holder) -->
+                <div class="step hidden" id="step2b-seat-radio">
+                    <button class="back-btn" onclick="goToPreviousStep('step2b-seat-radio', 'step3-dashboard')">← Go Back</button>
+                    <h3>Step 4: Select your radio type</h3>
+                    <div class="options" id="seatRadioOptions">
+                        <div class="option" data-value="radio-with-bluetooth">
+                            <div class="option-image">
+                                <img src="static/radio_bluetooth.jpg" alt="Radio with Bluetooth" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            </div>
+                            <h4>Radio with Bluetooth</h4>
+                            <p>Standard radio with Bluetooth connectivity</p>
+                        </div>
+                        <div class="option" data-value="radio-without-bluetooth">
+                            <div class="option-image">
+                                <img src="static/radio_standard.jpg" alt="Radio without Bluetooth" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            </div>
+                            <h4>Radio without Bluetooth</h4>
+                            <p>Basic radio without Bluetooth</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Step 2: Seat Mii Specific Options -->
                 <div class="step hidden" id="step2-seat">
+                    <button class="back-btn" onclick="goToPreviousStep('step2-seat', 'step1')">← Go Back</button>
                     <h3>Step 2: Select your Seat Mii configuration</h3>
                     <div class="options" id="seatOptions">
                         <div class="option" data-value="with-phoneholder-2016-2023">
@@ -155,6 +232,7 @@
 
                 <!-- Step 2: Skoda Attigo Specific Options -->
                 <div class="step hidden" id="step2-skoda">
+                    <button class="back-btn" onclick="goToPreviousStep('step2-skoda', 'step1')">← Go Back</button>
                     <h3>Step 2: Select your Skoda Attigo configuration</h3>
                     <div class="options" id="skodaOptions">
                         <div class="option" data-value="with-phoneholder-2016-2023">
@@ -188,8 +266,31 @@
                     </div>
                 </div>
 
+                <!-- Step 2b: Radio selection for Skoda Citigo (without phone holder) -->
+                <div class="step hidden" id="step2b-skoda-radio">
+                    <button class="back-btn" onclick="goToPreviousStep('step2b-skoda-radio', 'step3-dashboard')">← Go Back</button>
+                    <h3>Step 4: Select your radio type</h3>
+                    <div class="options" id="skodaRadioOptions">
+                        <div class="option" data-value="radio-with-bluetooth">
+                            <div class="option-image">
+                                <img src="static/radio_bluetooth.jpg" alt="Radio with Bluetooth" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            </div>
+                            <h4>Radio with Bluetooth</h4>
+                            <p>Standard radio with Bluetooth connectivity</p>
+                        </div>
+                        <div class="option" data-value="radio-without-bluetooth">
+                            <div class="option-image">
+                                <img src="static/radio_standard.jpg" alt="Radio without Bluetooth" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                            </div>
+                            <h4>Radio without Bluetooth</h4>
+                            <p>Basic radio without Bluetooth</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Step 3: Dashboard Type (for phone holder options) -->
                 <div class="step hidden" id="step3-dashboard">
+                    <button class="back-btn" onclick="goToPreviousStep('step3-dashboard')">← Go Back</button>
                     <h3>Step 3: What type of dashboard do you have?</h3>
                     <div class="options" id="dashboardOptions">
                         <div class="option" data-value="high-dashboard">
@@ -211,7 +312,14 @@
 
                 <!-- Final Step: Summary and Order -->
                 <div class="step hidden" id="stepFinal">
+                    <button class="back-btn" onclick="goToPreviousStep('stepFinal')">← Go Back</button>
                     <h3>Perfect! Here's your CarPlay solution:</h3>
+                    
+                    <!-- Product Image -->
+                    <div id="productImage" style="text-align: center; margin: 2rem 0;">
+                        <!-- Product image will be populated by JavaScript -->
+                    </div>
+                    
                     <div id="finalSummary" style="background: #f8f9fa; padding: 2rem; border-radius: 10px; margin: 2rem 0;">
                         <!-- Summary content will be populated by JavaScript -->
                     </div>
@@ -259,7 +367,29 @@
         let selectedCar = '';
         let selectedConfig = '';
         let selectedDashboard = '';
+        let selectedRadio = '';
         let requiresDashboardSelection = false;
+
+        // Function to set appropriate CSS class based on number of options
+        function setOptionsLayout() {
+            document.querySelectorAll('.options').forEach(optionsContainer => {
+                const optionCount = optionsContainer.querySelectorAll('.option').length;
+                
+                // Remove existing option classes
+                optionsContainer.classList.remove('options-2', 'options-3');
+                
+                // Add appropriate class based on count
+                if (optionCount === 2) {
+                    optionsContainer.classList.add('options-2');
+                } else if (optionCount === 3) {
+                    optionsContainer.classList.add('options-3');
+                }
+                // 4 options use default layout (no additional class needed)
+            });
+        }
+
+        // Call the function when page loads
+        document.addEventListener('DOMContentLoaded', setOptionsLayout);
 
         // Step 1: Car selection
         document.getElementById('carOptions').addEventListener('click', function(e) {
@@ -287,6 +417,9 @@
                         document.getElementById('step2-skoda').classList.remove('hidden');
                         document.getElementById('step2-skoda').classList.add('active');
                     }
+                    
+                    // Update options layout for the new step
+                    setOptionsLayout();
                 }, 500);
             }
         });
@@ -298,9 +431,34 @@
                 e.target.closest('.option').classList.add('selected');
                 selectedConfig = e.target.closest('.option').dataset.value;
                 
-                // Auto-proceed to final step after a short delay (no dashboard selection needed)
                 setTimeout(() => {
                     document.getElementById('step2-vw').classList.add('hidden');
+                    
+                    // Check if this is without phone holder option
+                    if (selectedConfig === 'without-phoneholder-2016-2023') {
+                        // Show radio selection step
+                        document.getElementById('step2b-vw-radio').classList.remove('hidden');
+                        document.getElementById('step2b-vw-radio').classList.add('active');
+                        // Update options layout for radio step
+                        setOptionsLayout();
+                    } else {
+                        // Proceed directly to final step for other options
+                        showFinalStep();
+                    }
+                }, 500);
+            }
+        });
+
+        // Step 2b: Radio selection for VW Up (without phone holder)
+        document.getElementById('vwRadioOptions').addEventListener('click', function(e) {
+            if (e.target.closest('.option')) {
+                document.querySelectorAll('#vwRadioOptions .option').forEach(opt => opt.classList.remove('selected'));
+                e.target.closest('.option').classList.add('selected');
+                selectedRadio = e.target.closest('.option').dataset.value;
+                
+                // Proceed to final step after selection
+                setTimeout(() => {
+                    document.getElementById('step2b-vw-radio').classList.add('hidden');
                     showFinalStep();
                 }, 500);
             }
@@ -323,6 +481,8 @@
                     if (requiresDashboardSelection) {
                         document.getElementById('step3-dashboard').classList.remove('hidden');
                         document.getElementById('step3-dashboard').classList.add('active');
+                        // Update options layout for dashboard step
+                        setOptionsLayout();
                     } else {
                         showFinalStep();
                     }
@@ -347,6 +507,8 @@
                     if (requiresDashboardSelection) {
                         document.getElementById('step3-dashboard').classList.remove('hidden');
                         document.getElementById('step3-dashboard').classList.add('active');
+                        // Update options layout for dashboard step
+                        setOptionsLayout();
                     } else {
                         showFinalStep();
                     }
@@ -361,9 +523,52 @@
                 e.target.closest('.option').classList.add('selected');
                 selectedDashboard = e.target.closest('.option').dataset.value;
                 
-                // Auto-proceed to final step after a short delay
+                // Auto-proceed to next step after a short delay
                 setTimeout(() => {
                     document.getElementById('step3-dashboard').classList.add('hidden');
+                    
+                    // Check if this is Seat Mii or Skoda Citigo without phone holder - if so, show radio selection
+                    if (selectedCar === 'seat-mii' && selectedConfig === 'without-phoneholder-2016-2023') {
+                        document.getElementById('step2b-seat-radio').classList.remove('hidden');
+                        document.getElementById('step2b-seat-radio').classList.add('active');
+                        setOptionsLayout();
+                    } else if (selectedCar === 'skoda-citigo' && selectedConfig === 'without-phoneholder-2016-2023') {
+                        document.getElementById('step2b-skoda-radio').classList.remove('hidden');
+                        document.getElementById('step2b-skoda-radio').classList.add('active');
+                        setOptionsLayout();
+                    } else {
+                        // For all other cases, proceed to final step
+                        showFinalStep();
+                    }
+                }, 500);
+            }
+        });
+
+        // Step 2b: Radio selection for Seat Mii (without phone holder, after dashboard selection)
+        document.getElementById('seatRadioOptions').addEventListener('click', function(e) {
+            if (e.target.closest('.option')) {
+                document.querySelectorAll('#seatRadioOptions .option').forEach(opt => opt.classList.remove('selected'));
+                e.target.closest('.option').classList.add('selected');
+                selectedRadio = e.target.closest('.option').dataset.value;
+                
+                // Proceed to final step after selection
+                setTimeout(() => {
+                    document.getElementById('step2b-seat-radio').classList.add('hidden');
+                    showFinalStep();
+                }, 500);
+            }
+        });
+
+        // Step 2b: Radio selection for Skoda Citigo (without phone holder, after dashboard selection)
+        document.getElementById('skodaRadioOptions').addEventListener('click', function(e) {
+            if (e.target.closest('.option')) {
+                document.querySelectorAll('#skodaRadioOptions .option').forEach(opt => opt.classList.remove('selected'));
+                e.target.closest('.option').classList.add('selected');
+                selectedRadio = e.target.closest('.option').dataset.value;
+                
+                // Proceed to final step after selection
+                setTimeout(() => {
+                    document.getElementById('step2b-skoda-radio').classList.add('hidden');
                     showFinalStep();
                 }, 500);
             }
@@ -389,9 +594,41 @@
                 'low-dashboard': 'Low Dashboard'
             };
 
+            const radioNames = {
+                'radio-with-bluetooth': 'Radio with Bluetooth',
+                'radio-without-bluetooth': 'Radio without Bluetooth'
+            };
+
             let price = 299; // Base price
             if (selectedConfig.includes('garmin')) price += 50;
             if (selectedDashboard === 'high-dashboard') price += 30;
+
+            // Determine product image based on selections
+            let productImageSrc = 'static/products/carplay-screen-default.jpg'; // Default product image
+            
+            // Customize image based on configuration
+            if (selectedConfig.includes('garmin')) {
+                productImageSrc = 'static/products/carplay-screen-garmin.jpg';
+            } else if (selectedConfig === 'with-phoneholder-2016-2023') {
+                productImageSrc = 'static/products/carplay-screen-phoneholder.jpg';
+            } else if (selectedConfig === 'without-phoneholder-2016-2023') {
+                if (selectedRadio === 'radio-with-bluetooth') {
+                    productImageSrc = 'static/products/carplay-screen-bluetooth-radio.jpg';
+                } else if (selectedRadio === 'radio-without-bluetooth') {
+                    productImageSrc = 'static/products/carplay-screen-basic-radio.jpg';
+                } else {
+                    productImageSrc = 'static/products/carplay-screen-without-phoneholder.jpg';
+                }
+            }
+
+            // Display product image
+            const productImageHTML = `
+                <img src="${productImageSrc}" alt="Your CarPlay Screen" 
+                     style="max-width: 100%; height: auto; max-height: 300px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);"
+                     onerror="this.src='static/logo.jpeg'; this.style.maxHeight='200px';">
+                <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem; font-style: italic;">Your selected CarPlay screen configuration</p>
+            `;
+            document.getElementById('productImage').innerHTML = productImageHTML;
 
             let summary = `
                 <h4 style="color: #000; margin-bottom: 1rem;">Your Selection:</h4>
@@ -401,6 +638,10 @@
 
             if (selectedDashboard) {
                 summary += `<p><strong>Dashboard Type:</strong> ${dashboardNames[selectedDashboard]}</p>`;
+            }
+
+            if (selectedRadio) {
+                summary += `<p><strong>Radio Type:</strong> ${radioNames[selectedRadio]}</p>`;
             }
 
             summary += `
@@ -419,11 +660,106 @@
                 car: selectedCar,
                 config: selectedConfig,
                 dashboard: selectedDashboard || '',
+                radio: selectedRadio || '',
                 price: calculatePrice()
             });
             
             window.location.href = `contact.html?${params.toString()}`;
         }
+
+        function goToPreviousStep(currentStep, previousStep) {
+            // Hide current step
+            document.getElementById(currentStep).classList.add('hidden');
+            document.getElementById(currentStep).classList.remove('active');
+            
+            // Clear selections from current step
+            document.querySelectorAll(`#${currentStep} .option`).forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Reset variables based on which step we're going back from
+            if (currentStep.startsWith('step2-')) {
+                selectedCar = null;
+                // Show step 1
+                document.getElementById('step1').classList.remove('hidden');
+                document.getElementById('step1').classList.add('active');
+            } else if (currentStep === 'step2b-vw-radio') {
+                selectedRadio = null;
+                // Go back to VW configuration step
+                document.getElementById('step2-vw').classList.remove('hidden');
+                document.getElementById('step2-vw').classList.add('active');
+            } else if (currentStep === 'step2b-seat-radio') {
+                selectedRadio = null;
+                // Go back to dashboard selection step
+                document.getElementById('step3-dashboard').classList.remove('hidden');
+                document.getElementById('step3-dashboard').classList.add('active');
+            } else if (currentStep === 'step2b-skoda-radio') {
+                selectedRadio = null;
+                // Go back to dashboard selection step
+                document.getElementById('step3-dashboard').classList.remove('hidden');
+                document.getElementById('step3-dashboard').classList.add('active');
+            } else if (currentStep === 'step3-dashboard') {
+                selectedConfig = null;
+                // Determine which step2 to show based on selected car
+                if (selectedCar === 'volkswagen-up') {
+                    document.getElementById('step2-vw').classList.remove('hidden');
+                    document.getElementById('step2-vw').classList.add('active');
+                } else if (selectedCar === 'seat-mii') {
+                    document.getElementById('step2-seat').classList.remove('hidden');
+                    document.getElementById('step2-seat').classList.add('active');
+                } else if (selectedCar === 'skoda-citigo') {
+                    document.getElementById('step2-skoda').classList.remove('hidden');
+                    document.getElementById('step2-skoda').classList.add('active');
+                }
+            } else if (currentStep === 'stepFinal') {
+                // Go back to the appropriate step based on the flow
+                if (selectedRadio) {
+                    selectedRadio = null;
+                    // Check which car had radio selection
+                    if (selectedCar === 'volkswagen-up') {
+                        document.getElementById('step2b-vw-radio').classList.remove('hidden');
+                        document.getElementById('step2b-vw-radio').classList.add('active');
+                    } else if (selectedCar === 'seat-mii') {
+                        document.getElementById('step2b-seat-radio').classList.remove('hidden');
+                        document.getElementById('step2b-seat-radio').classList.add('active');
+                    } else if (selectedCar === 'skoda-citigo') {
+                        document.getElementById('step2b-skoda-radio').classList.remove('hidden');
+                        document.getElementById('step2b-skoda-radio').classList.add('active');
+                    }
+                } else if (selectedDashboard) {
+                    selectedDashboard = null;
+                    document.getElementById('step3-dashboard').classList.remove('hidden');
+                    document.getElementById('step3-dashboard').classList.add('active');
+                } else {
+                    selectedConfig = null;
+                    // Show the appropriate step2
+                    if (selectedCar === 'volkswagen-up') {
+                        document.getElementById('step2-vw').classList.remove('hidden');
+                        document.getElementById('step2-vw').classList.add('active');
+                    } else if (selectedCar === 'seat-mii') {
+                        document.getElementById('step2-seat').classList.remove('hidden');
+                        document.getElementById('step2-seat').classList.add('active');
+                    } else if (selectedCar === 'skoda-citigo') {
+                        document.getElementById('step2-skoda').classList.remove('hidden');
+                        document.getElementById('step2-skoda').classList.add('active');
+                    }
+                }
+            }
+        }
+
+        // Hamburger menu functionality
+        document.getElementById('hamburger-menu').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('hamburger-menu').classList.remove('active');
+                document.getElementById('nav-links').classList.remove('active');
+            });
+        });
 
         function calculatePrice() {
             let price = 299; // Base price

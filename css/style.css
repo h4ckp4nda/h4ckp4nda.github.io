@@ -10,6 +10,9 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -60,6 +63,87 @@ nav {
     color: #ccc;
 }
 
+/* Hamburger Menu Styles */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.hamburger-menu span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links.active li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links.active li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-links.active li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-links.active li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-links.active li:nth-child(5) { transition-delay: 0.5s; }
+    .nav-links.active li:nth-child(6) { transition-delay: 0.6s; }
+    
+    .nav-links a {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #333 100%);
@@ -99,10 +183,6 @@ nav {
     align-items: center;
 }
 
-.hero-text {
-    animation: slideInLeft 1s ease-out;
-}
-
 .hero-title {
     font-size: 4rem;
     margin-bottom: 1rem;
@@ -132,6 +212,7 @@ nav {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 4rem;
 }
 
 .cta-button {
@@ -194,12 +275,16 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: slideInRight 1s ease-out;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
 }
 
 .floating-screen {
     position: relative;
-    animation: float 6s ease-in-out infinite;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
 }
 
 .screen-demo {
@@ -207,6 +292,15 @@ nav {
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: static !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    will-change: auto !important;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .hero-stats {
@@ -247,10 +341,7 @@ nav {
     text-align: center;
     margin-bottom: 1.5rem;
     margin-top: 1rem;
-    background: linear-gradient(135deg, #1a73e8 0%, #4285f4 50%, #2c3e50 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #000000;
     position: relative;
     display: inline-block;
     width: 100%;
@@ -267,7 +358,7 @@ nav {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #1a73e8, #4285f4);
+    background: #000000;
     border-radius: 2px;
     animation: slideInScale 0.8s ease-out 0.3s both;
 }
@@ -309,48 +400,35 @@ nav {
 
 /* Section-specific title styles */
 .showcase .section-title {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #2c3e50 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #000000;
 }
 
 .showcase .section-title::after {
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: #000000;
 }
 
 .products .section-title {
-    background: linear-gradient(135deg, #1a73e8 0%, #4285f4 50%, #2c3e50 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #000000;
 }
 
 .products .section-title::after {
-    background: linear-gradient(90deg, #1a73e8, #4285f4);
+    background: #000000;
 }
 
 .reviews .section-title {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #2c3e50 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #000000;
 }
 
 .reviews .section-title::after {
-    background: linear-gradient(90deg, #f093fb, #f5576c);
+    background: #000000;
 }
 
 .contact .section-title {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 50%, #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: white; /* Fallback for unsupported browsers */
+    color: #ffffff;
 }
 
 .contact .section-title::after {
-    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    background: #ffffff;
 }
 
 /* Animations */
@@ -453,9 +531,24 @@ nav {
 
 .showcase-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
     margin-top: 4rem;
+}
+
+/* Medium screens - tablets */
+@media (max-width: 1024px) {
+    .showcase-features {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .showcase-features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
 }
 
 .feature-highlight {
@@ -487,6 +580,126 @@ nav {
 
 .feature-highlight p {
     color: #666;
+}
+
+/* Dashcam Section */
+.dashcam-section {
+    background: #f8f9fa;
+    padding: 100px 0 80px;
+}
+
+.dashcam-widget {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    margin-top: 3rem;
+}
+
+.dashcam-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.dashcam-info h3 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.dashcam-specs {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.spec-icon {
+    font-size: 1.5rem;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.spec-details h4 {
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.spec-details p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.dashcam-preview {
+    position: relative;
+}
+
+.dashcam-screen {
+    position: relative;
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.recording-indicator {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,0,0,0.9);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.rec-dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+.dashcam-features {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.feature-badge {
+    background: #000;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 /* Enhanced Products Section */
@@ -1024,11 +1237,13 @@ footer {
 /* Model Selection Styles */
 .model-selection {
     background: white;
-    padding: 80px 0;
+    padding: 140px 0 80px;
+    min-height: calc(100vh - 120px);
+    flex: 1;
 }
 
 .selection-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -1052,17 +1267,47 @@ footer {
 
 .options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+/* Default 4 options layout - 2x2 grid with same size as 3-option layout */
+.options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 100%;
+}
+
+/* 4 options specific - center the 2x2 grid */
+.options:not(.options-2):not(.options-3) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 66.66%; /* 2/3 of full width to match 3-column sizing */
+    margin: 0 auto;
+}
+
+/* 3 options layout - full width, 3 columns */
+.options.options-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 100%;
+}
+
+/* 2 options layout - same size as 3/4 option layouts */
+.options.options-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 66.66%; /* 2/3 of full width to match 3-column individual sizing */
+    margin: 0 auto;
 }
 
 .option {
     border: 2px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
+    border-radius: 12px;
+    padding: 1.5rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
     background: white;
 }
 
@@ -1073,20 +1318,35 @@ footer {
 
 .option.selected {
     border-color: #000;
-    background: #000;
+    background: #5e5e5e;
     color: white;
 }
 
 .option-image {
     width: 100%;
-    height: 150px;
+    height: 200px;
     background: #f0f0f0;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #666;
+    flex-shrink: 0;
+}
+
+.option h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-height: 1.4em;
+}
+
+.option p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+    min-height: 1.2em;
 }
 
 .option.selected .option-image {
@@ -1122,6 +1382,34 @@ footer {
 }
 
 /* Responsive Design */
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+    .options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .options.options-2 {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .options.options-3 {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+    }
+    
+    /* 4 options still use 2x2 but full width on tablet */
+    .options:not(.options-2):not(.options-3) {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
@@ -1129,16 +1417,21 @@ footer {
     
     .hero-content .container {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
         text-align: center;
+        padding: 0 20px;
     }
     
     .hero-showcase {
         order: -1;
+        max-width: 400px;
+        margin: 0 auto;
     }
     
     .screen-demo {
-        max-width: 350px;
+        max-width: 100%;
+        height: auto;
+        width: 100%;
     }
     
     .stats-grid {
@@ -1173,6 +1466,7 @@ footer {
     
     .hero-buttons {
         justify-content: center;
+        margin-bottom: 3rem;
     }
     
     .cta-button {
@@ -1191,7 +1485,8 @@ footer {
     
     .hero {
         min-height: auto;
-        padding: 100px 0 40px;
+        padding: 130px 0 80px;
+        margin-bottom: 2rem;
     }
     
     .section-title {
@@ -1283,6 +1578,249 @@ footer {
         width: 100%;
         justify-content: center;
     }
+    
+    /* Mobile Car Selection Styles */
+    .options {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .selection-container {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .option {
+        padding: 1.5rem 1rem;
+        max-width: 95%;
+        margin: 0 auto;
+        border-radius: 12px;
+        border-width: 2px;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .option-image {
+        height: 120px;
+        max-width: 70%;
+        margin: 0 auto 1rem auto;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+    }
+    
+    .option h4 {
+        margin: 1rem 0 0.5rem 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .option p {
+        margin: 0.5rem 0;
+        font-size: 0.95rem;
+        color: #666;
+    }
+    
+    .option:hover, .option:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .option.selected {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    
+    /* Touch-friendly mobile interactions */
+    @media (hover: none) and (pointer: coarse) {
+        .option:hover {
+            transform: none;
+        }
+        
+        .option:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+        
+        .continue-btn:hover {
+            transform: none;
+        }
+        
+        .continue-btn:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+    }
+    
+    /* Mobile-specific step indicator improvements */
+    @media (max-width: 768px) {
+        .step.active {
+            border-left: 4px solid #000;
+        }
+        
+        .step:not(.active) {
+            opacity: 0.7;
+        }
+        
+        /* Dashcam mobile styles */
+        .dashcam-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .dashcam-widget {
+            padding: 2rem 1rem;
+        }
+        
+        .dashcam-info h3 {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .dashcam-specs {
+            gap: 1rem;
+        }
+        
+        .spec-item {
+            gap: 0.75rem;
+        }
+        
+        .spec-icon {
+            min-width: 35px;
+            height: 35px;
+            font-size: 1.2rem;
+        }
+    }
+    
+    /* Section spacing for mobile */
+    .showcase, .products, .reviews {
+        margin-bottom: 2rem;
+    }
+    
+    .contact {
+        margin-bottom: 0;
+    }
+    
+    .showcase {
+        padding-top: 3rem;
+    }
+    
+    .hero-stats {
+        margin-bottom: 2rem;
+    }
+    
+    /* Better spacing between sections */
+    section {
+        margin-bottom: 3rem;
+    }
+    
+    /* Product cards mobile optimization */
+    .product-card {
+        margin-bottom: 1.5rem;
+        max-width: 100%;
+    }
+    
+    .product-image {
+        height: 200px;
+    }
+    
+    /* Reviews grid mobile */
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Image containers mobile fix */
+    .hero-image, .showcase-image, .product-image {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    
+    /* Gallery and showcase adjustments */
+    .showcase-content {
+        padding: 1rem;
+    }
+    
+    .showcase-text {
+        margin-bottom: 1rem;
+    }
+    
+    /* Form adjustments */
+    .contact-form {
+        padding: 1rem;
+    }
+    
+    input, textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Model Selection Mobile Spacing */
+    .model-selection {
+        padding-top: 130px;
+        padding-bottom: 3rem;
+    }
+    
+    .step {
+        margin-bottom: 3rem;
+        padding: 2rem 1rem;
+        background: #fafafa;
+        border-radius: 15px;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    .step h3 {
+        margin-bottom: 2rem;
+        padding: 0;
+        text-align: center;
+        font-size: 1.3rem;
+        color: #333;
+        font-weight: bold;
+    }
+    
+    .step.hidden {
+        display: none;
+    }
+    
+    .continue-btn {
+        display: block;
+        background: #000;
+        color: white;
+        padding: 18px 30px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 3rem auto 0;
+        width: 90%;
+        max-width: 300px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .continue-btn:hover {
+        background: #333;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .continue-btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1299,7 +1837,58 @@ footer {
         gap: 1.5rem;
     }
     
-    .product-card {
+    /* Extra small mobile adjustments for select model page */
+    .model-selection .section-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .step {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .step h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .option {
+        max-width: 100%;
+        padding: 1.25rem 0.75rem;
+        min-height: 180px;
+    }
+    
+    .option-image {
+        height: 100px;
+        max-width: 60%;
+    }
+    
+    .option h4 {
+        font-size: 1.1rem;
+        margin: 0.75rem 0 0.25rem 0;
+    }
+    
+    .option p {
+        font-size: 0.9rem;
+        margin: 0.25rem 0;
+    }
+    
+    .continue-btn {
+        padding: 16px 24px;
+        font-size: 1.1rem;
+        width: 95%;
+    }
+    
+    .selection-container p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 0.5rem;
+    }
+}
+
+.product-card {
         margin: 0 10px;
     }
     

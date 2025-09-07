@@ -10,14 +10,22 @@
     <!-- Header -->
     <header>
         <nav class="container">
-            <img src="static/logo.webp" alt="UpYourCarPlay Logo" class="logo">
-            <ul class="nav-links">
+            <img src="static/main_logo.png" alt="UpYourCarPlay Logo" class="logo">
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#showcase">Showcase</a></li>
-                <li><a href="#products">Products</a></li>
+                <li><a href="select_model.html">Select Your Model</a></li>
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="select_model.html">Select Your Model</a></li>
+                <li><a href="#showcase">Showcase</a></li>
             </ul>
         </nav>
     </header>
@@ -37,16 +45,17 @@
                 </div>
                 <div class="hero-showcase">
                     <div class="floating-screen">
-                        <img src="static/showcase_screen.jpg" alt="CarPlay Screen" class="screen-demo">
+                        <img src="static/display_showcase.jpg" alt="CarPlay Screen" class="screen-demo">
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="hero-stats">
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <span class="stat-number">100+</span>
+                        <span class="stat-number">500+</span>
                         <span class="stat-label">Happy Customers</span>
                     </div>
                     <div class="stat-item">
@@ -94,25 +103,32 @@
                     <p>Automatic pairing when you enter your car</p>
                 </div>
                 <div class="feature-highlight">
-                    <div class="feature-icon">🗺️</div>
-                    <h3>Navigation Ready</h3>
-                    <p>Apple Maps, Google Maps, Waze support</p>
-                </div>
-                <div class="feature-highlight">
                     <div class="feature-icon">🎵</div>
                     <h3>Music & Calls</h3>
                     <p>Spotify, Apple Music, hands-free calling</p>
                 </div>
                 <div class="feature-highlight">
+                    <div class="feature-icon">🎥</div>
+                    <h3>Built-in Dashcam</h3>
+                    <p>1080p HD automatic recording with loop recording and up to 128GB storage</p>
+                </div>
+                <div class="feature-highlight">
                     <div class="feature-icon">⚡</div>
                     <h3>Quick Install</h3>
-                    <p>Professional installation in under 2 hours</p>
+                    <p>Newest model with installation in under 1 minute</p>
+                </div>
+               
+                <div class="feature-highlight">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Navigation Ready</h3>
+                    <p>Apple Maps, Google Maps, Waze support</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
+
+    <!-- Products Section
     <section id="products" class="products">
         <div class="container">
             <h2 class="section-title">Premium CarPlay Solutions</h2>
@@ -202,7 +218,7 @@
                 <a href="select_model.html" class="cta-button large">Select Your Car Model</a>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Reviews Section -->
     <section id="reviews" class="reviews">
@@ -219,7 +235,7 @@
                         </div>
                         <div class="overall-rating">
                             <div class="rating-display">
-                                <span class="rating-number">4.8</span>
+                                <span class="rating-number">5.0</span>
                                 <div class="rating-stars">★★★★★</div>
                             </div>
                             <div class="rating-count">Based on 50+ Google reviews</div>
@@ -396,5 +412,20 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // Hamburger menu functionality
+        document.getElementById('hamburger-menu').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('hamburger-menu').classList.remove('active');
+                document.getElementById('nav-links').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

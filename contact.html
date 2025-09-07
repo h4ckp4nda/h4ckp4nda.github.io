@@ -180,7 +180,16 @@
     <header>
         <nav class="container">
             <img src="static/logo.webp" alt="UpYourCarPlay Logo" class="logo">
-            <ul class="nav-links">
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#showcase">Showcase</a></li>
                 <li><a href="index.html#products">Products</a></li>
@@ -476,6 +485,20 @@ Thank you!`;
         document.getElementById('city').addEventListener('blur', validateAddress);
         document.getElementById('country').addEventListener('blur', validateAddress);
         document.getElementById('postalCode').addEventListener('blur', validateAddress);
+
+        // Hamburger menu functionality
+        document.getElementById('hamburger-menu').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('hamburger-menu').classList.remove('active');
+                document.getElementById('nav-links').classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
